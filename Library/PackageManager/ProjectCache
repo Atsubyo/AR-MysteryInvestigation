@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638618668210000000
-    m_Hash: 674148673
+      ticks: 638618675480000000
+    m_Hash: 3219194938
   m_LockFileStatus:
     m_FilePath: /Users/atsubyo/Documents/projects/AR-MysteryInvestigation/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638618668260000000
-    m_Hash: 1754719187
+      ticks: 638618675480000000
+    m_Hash: 3299463117
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,12 +22,12 @@ m_LocalPackages:
 m_ProjectPath: /Users/atsubyo/Documents/projects/AR-MysteryInvestigation/Packages
 m_EditorVersion: 2022.3.43f1 (85497d293fa1)
 m_ResolvedPackages:
-- packageId: com.unity.collab-proxy@2.4.4
+- packageId: com.unity.collab-proxy@2.5.1
   testable: 0
   isDirectDependency: 1
-  version: 2.4.4
+  version: 2.5.1
   source: 1
-  resolvedPath: /Users/atsubyo/Documents/projects/AR-MysteryInvestigation/Library/PackageCache/com.unity.collab-proxy@2.4.4
+  resolvedPath: /Users/atsubyo/Documents/projects/AR-MysteryInvestigation/Library/PackageCache/com.unity.collab-proxy@2.5.1
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Version Control
@@ -36,7 +36,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: Editor
-  type: assets
+  type: 
   description: The package gives you the ability to use Unity Version Control in
     the Unity editor. To use Unity Version Control, a subscription is required. Learn
     more about how you can get started for free by visiting https://unity.com/solutions/version-control
@@ -150,13 +150,13 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638573492230000000
-  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.4/manual/index.html
+  datePublishedTicks: 638612183804560000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.collab-proxy@2.5/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
-    revision: 03b1de8d838eb1e427cb1b1d8bf9157f33377542
+    revision: 470a7a1321fe499cf5055d6b1d64da3a08c8dcbc
     path: 
   unityLifecycle:
     version: 2.4.4

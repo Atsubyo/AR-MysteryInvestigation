@@ -57,6 +57,10 @@ public class ClueController : MonoBehaviour
         {
             showClue2 = false;
         }
+        if (!Clue3.activeSelf)
+        {
+            showClue3 = false;
+        }
     }
 
     void OnDestroy()
@@ -77,35 +81,7 @@ public class ClueController : MonoBehaviour
     {
         if (GhostHunting)
         {
-            if (IsTargetTracked(LuigiObserver) && IsTargetTracked(PoltergustObserver))
-            {
-                if (!showClue2)
-                {
-                    OpenLetter(ref Clue1, ref showClue1);
-                    luigiFoundPoltergust = true;
-                    Debug.Log("Luigi found his poltergust!");
-                } else
-                {
-                    Debug.Log("Close other clues first.");
-                }
-            } else if (IsTargetTracked(LuigiObserver) && IsTargetTracked(GhostObserver))
-            {
-                if (luigiFoundPoltergust)
-                {
-                    if (!showClue1)
-                    {
-                        OpenLetter(ref Clue2, ref showClue2);
-                        luigiFoundGhost = true;
-                        Debug.Log("Luigi found a ghost!");
-                    } else
-                    {
-                        Debug.Log("Close other clues first.");
-                    }
-                } else
-                {
-                    Debug.Log("Luigi needs to find his poltergust first!");
-                }
-            } else if (IsTargetTracked(LuigiObserver) && IsTargetTracked(BooObserver))
+            if (IsTargetTracked(LuigiObserver) && IsTargetTracked(BooObserver))
             {
                 if (luigiFoundPoltergust && luigiFoundGhost)
                 {
@@ -116,6 +92,36 @@ public class ClueController : MonoBehaviour
                 else
                 {
                     Debug.Log("Luigi needs to find his poltergust and ghost first!");
+                }
+            } else if (IsTargetTracked(LuigiObserver) && IsTargetTracked(GhostObserver))
+            {
+                if (luigiFoundPoltergust)
+                {
+                    if (!showClue1)
+                    {
+                        OpenLetter(ref Clue2, ref showClue2);
+                        luigiFoundGhost = true;
+                        Debug.Log("Luigi found a ghost!");
+                    }
+                    else
+                    {
+                        Debug.Log("Close other clues first.");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Luigi needs to find his poltergust first!");
+                }
+            } else if (IsTargetTracked(LuigiObserver) && IsTargetTracked(PoltergustObserver))
+            {
+                if (!showClue2)
+                {
+                    OpenLetter(ref Clue1, ref showClue1);
+                    luigiFoundPoltergust = true;
+                    Debug.Log("Luigi found his poltergust!");
+                } else
+                {
+                    Debug.Log("Close other clues first.");
                 }
             }
         }

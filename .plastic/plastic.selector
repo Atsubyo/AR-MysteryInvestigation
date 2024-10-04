@@ -1,4 +1,3 @@
-repository "AR-MysteryInvestigation@Therealperson4@cloud"
+rep "AR-MysteryInvestigation@Therealperson4@cloud"
   path "/"
-    br "/main"
-    co "/main"
+    smartbranch "/main"

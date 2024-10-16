@@ -18,6 +18,11 @@ public class ZoneTwoController : MonoBehaviour
 
     private int GhostStrength = 1;
 
+    void Start()
+    {
+        LowerGhost.SetActive(false);
+    }
+
     public void OpenClue()
     {
         Clue.SetActive(true);
@@ -39,6 +44,7 @@ public class ZoneTwoController : MonoBehaviour
 
         if (other.gameObject.Equals(Potion))
         {
+            Debug.Log("Collider with potion");
             Potion.SetActive(false);
 
             if (hotbarController != null)
@@ -53,6 +59,7 @@ public class ZoneTwoController : MonoBehaviour
             if (hotbarController.HotbarText[slotIdx].text == "Potion")
             {
                 --GhostStrength;
+                hotbarController.DeleteFromHotbar("Potion");
             }
             if (hotbarController.HotbarText[slotIdx].text == "Polterdust")
             {

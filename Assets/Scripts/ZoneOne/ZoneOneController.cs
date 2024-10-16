@@ -15,6 +15,12 @@ public class ZoneOneController : MonoBehaviour
 
     [SerializeField] private HotbarController hotbarController;
 
+
+    void Start()
+    {
+        LowerGhost.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.Equals(Zone))
@@ -40,6 +46,7 @@ public class ZoneOneController : MonoBehaviour
                 TorchEmber.SetActive(true);
                 LowerGhost.SetActive(true);
                 GhostDialogue.SetActive(true);
+                hotbarController.DeleteFromHotbar("HandTorch");
             }
         }
 

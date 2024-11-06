@@ -59,4 +59,4 @@ crashlytics-build.properties
 .DS_Store*
 Thumbs.db
 Desktop.ini
-**/Packages/com.ptc.vuforia.engine-10.25.4.tgz
+**/Packages/com.ptc.vuforia.engine-*.tgz

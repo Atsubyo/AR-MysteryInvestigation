@@ -1,0 +1,11 @@
+Model Information:
+* title:	Luigi's Mansion - King Boo and some ghosts
+* source:	https://sketchfab.com/3d-models/luigis-mansion-king-boo-and-some-ghosts-4223680ed1ac42779aa792c03e02e1d7
+* author:	Arnau Doménech (https://sketchfab.com/adomenech)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Luigi's Mansion - King Boo and some ghosts" (https://sketchfab.com/3d-models/luigis-mansion-king-boo-and-some-ghosts-4223680ed1ac42779aa792c03e02e1d7) by Arnau Doménech (https://sketchfab.com/adomenech) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)

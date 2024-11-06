@@ -1,0 +1,11 @@
+Model Information:
+* title:	luigi
+* source:	https://sketchfab.com/3d-models/luigi-316bbe649a7543298dd7921ea0ee8abb
+* author:	thomascancinor (https://sketchfab.com/thomascancinor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "luigi" (https://sketchfab.com/3d-models/luigi-316bbe649a7543298dd7921ea0ee8abb) by thomascancinor (https://sketchfab.com/thomascancinor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

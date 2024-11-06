@@ -59,4 +59,11 @@ crashlytics-build.properties
 .DS_Store*
 Thumbs.db
 Desktop.ini
-**/Packages/com.ptc.vuforia.engine-10.25.4.tgz
+
+# Ignore large audio files
+Assets/Sounds/Global/Background/Background Music 1.wav
+Assets/Sounds/Global/Background/Background Music 2.wav
+
+# Ignore Vuforia package
+**/Packages/com.ptc.vuforia.engine-*.tgz
+Packages/com.ptc.vuforia.engine-10.27.3.tgz

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/AR-MysteryInvestigation.unity
+    guid: a4b7a4f324d3849d095dc16c903ee458
   m_configObjects: {}

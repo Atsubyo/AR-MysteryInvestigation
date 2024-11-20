@@ -14,6 +14,7 @@ public class ZoneFiveController : MonoBehaviour
     public bool puzzleSolving = false;
     public bool puzzleSolved = false;
     public bool inZone = false;
+    public bool mazeFinished = false;
 
     private Vector3 OriginalSkullPosition;
     private HitTestResult previousHit;
@@ -128,6 +129,7 @@ public class ZoneFiveController : MonoBehaviour
 
             if (other.Equals(Finish) && mazeActive)
             {
+                mazeFinished = true;
                 audioController.PlayGlobalSound((int)GlobalAudio.GhostDialogue);
                 LowerGhost.SetActive(true);
 

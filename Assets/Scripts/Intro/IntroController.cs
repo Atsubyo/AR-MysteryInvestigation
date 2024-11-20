@@ -8,7 +8,8 @@ using static AudioController;
 
 public class IntroController : MonoBehaviour
 {
-    private bool isDoorClosed = false;
+    public bool isDoorClosed = false;
+    public bool polterdustObtained = false;
 
     [SerializeField] private Collider IntroTwoZone;
     [SerializeField] private List<GameObject> NarrativePieces;

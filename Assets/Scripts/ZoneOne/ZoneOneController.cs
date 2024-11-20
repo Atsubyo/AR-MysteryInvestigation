@@ -7,10 +7,11 @@ using static AudioController;
 
 public class ZoneOneController : MonoBehaviour
 {
-    private bool torchObtained = false;
-    private bool torchLit = false;
+    public bool torchObtained = false;
+    public bool torchLit = false;
     public bool ghostDefeated = false;
     public bool inZone = false;
+    public bool keyObtained = false;
 
     [SerializeField] private Collider RenderZone;
     [SerializeField] private Collider Zone;
@@ -124,6 +125,8 @@ public class ZoneOneController : MonoBehaviour
 
         if (other.gameObject.Equals(Key))
         {
+            keyObtained = true;
+            Key.SetActive(false);
             hotbarController.AddToHotbar(SILVER_KEY);
 
             audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);

@@ -57,16 +57,14 @@ public class AudioController : MonoBehaviour
 
     private void PlayPlayerWalking()
     {
-        Debug.Log("player.transform.position: " + player.transform.position);
-        Debug.Log("prevPlayerPos: " + prevPlayerPos);
+        //Debug.Log("player.transform.position: " + player.transform.position);
+        //Debug.Log("prevPlayerPos: " + prevPlayerPos);
         if (player.transform.position != prevPlayerPos)
         {
-            Debug.Log("Hello1");
             globalSounds[(int)GlobalAudio.Walking].mute = false;
         }
         else
         {
-            Debug.Log("Hello2");
             globalSounds[(int)GlobalAudio.Walking].mute = true;
         }
         prevPlayerPos = player.transform.position;

@@ -11,13 +11,17 @@ public class ZoneTwoController : MonoBehaviour
 
     private bool gateIsClosed = false;
     public bool inZone = false;
-    private int GhostStrength = 1;
+    public bool potionObtained = false;
+    public bool bottleObtained = false;
+    public bool keyObtained = false;
+    public int GhostStrength = 1;
 
     [SerializeField] private ZoneOneController prevZone;
     [SerializeField] private Collider RenderZone;
     [SerializeField] private Collider Zone;
 
     [SerializeField] private List<GameObject> Environment;
+    [SerializeField] private GameObject startingDoor;
     [SerializeField] private List<GameObject> IncorrectPotions;
     [SerializeField] private GameObject EmptyFlask;
     [SerializeField] private GameObject PotionLiquid;
@@ -38,7 +42,9 @@ public class ZoneTwoController : MonoBehaviour
         {
             obj.SetActive(false);
         }
+        startingDoor.SetActive(true);
         Key.SetActive(false);
+        ProtectiveBarrier.SetActive(false);
         LowerGhost.SetActive(false);
     }
 
@@ -60,6 +66,7 @@ public class ZoneTwoController : MonoBehaviour
             {
                 obj.SetActive(true);
             }
+            startingDoor.SetActive(true);
         }
         if (prevZone.ghostDefeated)
         {
@@ -94,6 +101,7 @@ public class ZoneTwoController : MonoBehaviour
             {
                 if (hotbarController != null)
                 {
+                    bottleObtained = true;
                     EmptyFlask.SetActive(false);
                     audioController.PlayGlobalSound((int)GlobalAudio.ItemAdd);
                     hotbarController.AddToHotbar(EMPTY_FLASK);
@@ -105,6 +113,7 @@ public class ZoneTwoController : MonoBehaviour
 
             if (other.gameObject.Equals(PotionLiquid))
             {
+                potionObtained = true;
                 hotbarController.RenameHotbarItem(EMPTY_FLASK, FULL_FLASK);
 
                 audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
@@ -152,6 +161,8 @@ public class ZoneTwoController : MonoBehaviour
 
             if (other.gameObject.Equals(Key))
             {
+                keyObtained = true;
+                Key.SetActive(false);
                 hotbarController.AddToHotbar(GOLD_KEY);
 
                 audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
@@ -168,6 +179,7 @@ public class ZoneTwoController : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+            startingDoor.SetActive(false);
         }
 
         if (other.Equals(Zone))

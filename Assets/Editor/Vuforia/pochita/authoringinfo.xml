@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<QCARInfo>
+    <TargetSet version="36.0" toolVersion="v7.1.0">
+        <ModelTarget name="pochita" targetId="b6bc4bfc34544a0bbef18587207cd223" version="14.0" toolVersion="v7.1.0" bbox="-0.033079 0.010901 -0.049236 0.019421 0.061795 0.016557" trackingMode="scan" upVector="0.0 1.0 0.0" optimizeTrackingFor="default" realisticTextures="yes" />
+    </TargetSet>
+    <Assembly name="pochita" assemblyId="22c120406f1f4101b50123e9ddb8213e">
+        <Part name="pochita" translation="0 0 0" rotation="AD: 0 0 1 0" />
+        <EntryPoint name="(none)" trained="yes" />
+    </Assembly>
+</QCARInfo>

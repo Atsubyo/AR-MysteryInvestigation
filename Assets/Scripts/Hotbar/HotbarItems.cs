@@ -23,4 +23,17 @@ static class HotbarItems
     // Zone 5
 
     // Boss Room
+
+    public enum InventoryIcons
+    {
+        EmptySlot,
+        Polterdust,
+        HandTorch,
+        SilverKey,
+        EmptyFlask,
+        FullFlask,
+        GoldKey,
+        Plank,
+        RustyKey
+    }
 }

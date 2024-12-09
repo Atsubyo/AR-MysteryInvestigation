@@ -55,7 +55,6 @@ public class ZoneFiveController : MonoBehaviour
         Maze2.SetActive(false);
         Maze3.SetActive(false);
         initialCamFOV = cam.fieldOfView;
-        Debug.Log(initialCamFOV);
     }
 
     // Update is called once per frame

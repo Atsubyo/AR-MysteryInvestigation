@@ -59,6 +59,16 @@ public class AudioController : MonoBehaviour
     {
         //Debug.Log("player.transform.position: " + player.transform.position);
         //Debug.Log("prevPlayerPos: " + prevPlayerPos);
+        Rigidbody rig = player.GetComponent<Rigidbody>();
+        if(rig.velocity.magnitude > 0.1f)
+        {
+            globalSounds[(int)GlobalAudio.Walking].mute = false;
+        }
+        else
+        {
+            globalSounds[(int)GlobalAudio.Walking].mute = true;
+        }
+        /**
         if (player.transform.position != prevPlayerPos)
         {
             globalSounds[(int)GlobalAudio.Walking].mute = false;
@@ -67,6 +77,7 @@ public class AudioController : MonoBehaviour
         {
             globalSounds[(int)GlobalAudio.Walking].mute = true;
         }
+        **/
         prevPlayerPos = player.transform.position;
     }
 

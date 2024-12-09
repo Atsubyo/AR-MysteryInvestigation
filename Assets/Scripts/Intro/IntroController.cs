@@ -36,7 +36,7 @@ public class IntroController : MonoBehaviour
         {
             // Disable the tapped object
             Polterdust.SetActive(false);
-
+            polterdustObtained = true;
             audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
             IsolateNarrativePiece(ref NarrativePieces, 2);
 

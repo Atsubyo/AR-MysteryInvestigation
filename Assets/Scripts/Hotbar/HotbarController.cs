@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 using static AudioController;
+using static HotbarItems;
 
 public class HotbarController : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class HotbarController : MonoBehaviour
     [SerializeField] private GameObject[] hotbar = new GameObject[5];
     [SerializeField] private TextMeshProUGUI[] hotbarText = new TextMeshProUGUI[5];
     [SerializeField] private TextMeshProUGUI[] hotbarCounter = new TextMeshProUGUI[5];
+    [SerializeField] private List<RawImage> InventoryIconImages;
+    [SerializeField] private List<Texture> InventoryItemTextures;
+    [SerializeField] private GameObject Tooltip;
     private int selectedSlot = 0;
+
+    private Coroutine hideTooltipCoroutine;
 
     public TextMeshProUGUI[] HotbarText => hotbarText;
     public int SelectedSlot => selectedSlot;
@@ -23,8 +29,22 @@ public class HotbarController : MonoBehaviour
         if (slotIndex >= 0 && slotIndex < hotbar.Length)
         {
             selectedSlot = slotIndex;
+            Tooltip.SetActive(true);
+            TextMeshProUGUI tooltipText = Tooltip.GetComponentInChildren<TextMeshProUGUI>();
+            tooltipText.text = hotbarText[selectedSlot].text;
             UpdateHotbarUI();
+
+            if (hideTooltipCoroutine != null)
+                StopCoroutine(hideTooltipCoroutine);
+
+            hideTooltipCoroutine = StartCoroutine(HideTooltipAfterDelay(1f));
         }
+    }
+
+    private IEnumerator HideTooltipAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Tooltip.SetActive(false);
     }
 
     private void UpdateHotbarUI()
@@ -36,7 +56,7 @@ public class HotbarController : MonoBehaviour
             {
                 if (i == selectedSlot)
                 {
-                    slotImage.color = Color.black;
+                    slotImage.color = Color.gray;
                 }
                 else
                 {
@@ -54,8 +74,8 @@ public class HotbarController : MonoBehaviour
                 }
                 else
                 {
-                    slotText.color = Color.black;
-                    slotText.faceColor = Color.black;
+                    slotText.color = Color.gray;
+                    slotText.faceColor = Color.gray;
                 }
             }
 
@@ -69,8 +89,8 @@ public class HotbarController : MonoBehaviour
                 }
                 else
                 {
-                    counterText.color = Color.black;
-                    counterText.faceColor = Color.black;
+                    counterText.color = Color.gray;
+                    counterText.faceColor = Color.gray;
                 }
             }
         }
@@ -111,6 +131,9 @@ public class HotbarController : MonoBehaviour
                     slotTexts[1].text = "1";
 
                     audioController.PlayGlobalSound((int)GlobalAudio.ItemAdd);
+
+                    int itemIdx = SelectInventoryItem(itemName);
+                    InventoryIconImages[i].texture = InventoryItemTextures[itemIdx];
                     break;
                 }
             }
@@ -137,6 +160,9 @@ public class HotbarController : MonoBehaviour
             {
                 slotTexts[0].text = "N/A";
                 slotTexts[1].text = "0";
+
+                int itemIdx = SelectInventoryItem("N/A");
+                InventoryIconImages[i].texture = InventoryItemTextures[itemIdx];
                 break;
             }
         }
@@ -155,6 +181,9 @@ public class HotbarController : MonoBehaviour
                 if (counter == 0)
                 {
                     slotTexts[0].text = "N/A";
+
+                    int itemIdx = SelectInventoryItem("N/A");
+                    InventoryIconImages[i].texture = InventoryItemTextures[itemIdx];
                 }
                 break;
             }
@@ -168,6 +197,9 @@ public class HotbarController : MonoBehaviour
             TextMeshProUGUI[] slotTexts = hotbar[i].GetComponentsInChildren<TextMeshProUGUI>();
             slotTexts[0].text = "N/A";
             slotTexts[1].text = "0";
+
+            int itemIdx = SelectInventoryItem("N/A");
+            InventoryIconImages[i].texture = InventoryItemTextures[itemIdx];
         }
     }
 
@@ -204,5 +236,30 @@ public class HotbarController : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public int SelectInventoryItem(string itemName)
+    {
+        switch (itemName)
+        {
+            case POLTERDUST:
+                return (int)InventoryIcons.Polterdust;
+            case HAND_TORCH:
+                return (int)InventoryIcons.HandTorch;
+            case SILVER_KEY:
+                return (int)InventoryIcons.SilverKey;
+            case EMPTY_FLASK:
+                return (int)InventoryIcons.EmptyFlask;
+            case FULL_FLASK:
+                return (int)InventoryIcons.FullFlask;
+            case GOLD_KEY:
+                return (int)InventoryIcons.GoldKey;
+            case PLANK:
+                return (int)InventoryIcons.Plank;
+            case RUSTY_KEY:
+                return (int)InventoryIcons.RustyKey;
+            default:
+                return (int)InventoryIcons.EmptySlot;
+        }
     }
 }

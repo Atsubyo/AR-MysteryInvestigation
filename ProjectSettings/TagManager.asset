@@ -8,6 +8,8 @@ TagManager:
   - Plank
   - Puzzle
   - BarrierZone
+  - CorrectMaze
+  - WrongMaze
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - InventoryItems
   - 
   - 
   - Puzzle

@@ -160,6 +160,10 @@ public class ZoneThreeController : MonoBehaviour
                     audioController.PlayGlobalSound((int)GlobalAudio.GhostDeath);
                     LowerGhost.SetActive(false);
                     ghostDefeated = true;
+                    foreach (GameObject plank in Planks)
+                    {
+                        plank.SetActive(false);
+                    }
 
                     PlaneFinder.SetActive(false);
                     Void.SetActive(false);
@@ -189,6 +193,10 @@ public class ZoneThreeController : MonoBehaviour
             foreach (GameObject obj in Environment)
             {
                 obj.SetActive(false);
+            }
+            foreach (GameObject plank in PlankObjs)
+            {
+                plank.SetActive(false);
             }
         }
 

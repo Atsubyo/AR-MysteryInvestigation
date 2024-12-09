@@ -43,14 +43,15 @@ public class PuzzleController : MonoBehaviour
 
                 case (TouchPhase.Moved):
                     scaleAmount *= 1.01f;
+                    placedPuzzle.transform.localScale = new Vector3(scaleAmount, 0.00625f * scaleAmount, scaleAmount);
                     break;
 
                 case (TouchPhase.Stationary):
                     scaleAmount *= 1.01f;
+                    placedPuzzle.transform.localScale = new Vector3(scaleAmount, 0.00625f * scaleAmount, scaleAmount);
                     break;
 
                 case (TouchPhase.Ended):
-                    placedPuzzle.transform.localScale = new Vector3(scaleAmount,0.00625f * scaleAmount,scaleAmount);
                     progress = placedPuzzle.GetComponent<CompletionController>();
                     placementMode = false;
                     puzzleMode = true;

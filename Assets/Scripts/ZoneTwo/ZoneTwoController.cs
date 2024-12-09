@@ -113,11 +113,14 @@ public class ZoneTwoController : MonoBehaviour
 
             if (other.gameObject.Equals(PotionLiquid))
             {
-                potionObtained = true;
-                hotbarController.RenameHotbarItem(EMPTY_FLASK, FULL_FLASK);
+                if (hotbarController.FindHotbarItem(EMPTY_FLASK) != -1)
+                {
+                    potionObtained = true;
+                    hotbarController.RenameHotbarItem(EMPTY_FLASK, FULL_FLASK);
 
-                audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
-                IsolateNarrativePiece(ref NarrativePieces, 6);
+                    audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
+                    IsolateNarrativePiece(ref NarrativePieces, 6);
+                }
             }
 
             if (other.gameObject.Equals(LowerGhost))

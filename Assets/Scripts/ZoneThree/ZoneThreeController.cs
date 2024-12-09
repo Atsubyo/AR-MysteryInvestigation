@@ -8,8 +8,11 @@ using static AudioController;
 
 public class ZoneThreeController : MonoBehaviour
 {
+    public int planksObtained = 0;
     public bool ghostDefeated = false;
     public bool inZone = false;
+    public bool mazeActive = false;
+    public bool keyObtained = false;
 
     [SerializeField] private ZoneTwoController prevZone;
     [SerializeField] private Collider RenderZone;
@@ -50,6 +53,7 @@ public class ZoneThreeController : MonoBehaviour
             plank.SetActive(false);
         }
         Planks = new List<GameObject>();
+        PathPlanks.SetActive(false);
         Key.SetActive(false);
         LowerGhost.SetActive(false);
     }
@@ -65,6 +69,7 @@ public class ZoneThreeController : MonoBehaviour
 
     public void ResetScene()
     {
+        planksObtained = 0;
         foreach (GameObject plank in Planks)
         {
             plank.SetActive(false);
@@ -111,6 +116,7 @@ public class ZoneThreeController : MonoBehaviour
         {
             if (other.Equals(Zone) && !ghostDefeated)
             {
+                mazeActive = true;
                 inZone = true;
                 PlaneFinder.SetActive(true);
 
@@ -127,12 +133,13 @@ public class ZoneThreeController : MonoBehaviour
 
             if (other.CompareTag(PLANK))
             {
-                playerSource.PlayOneShot(itemGet);
+                Debug.Log("That's a plank");
+                planksObtained++;
                 hotbarController.AddToHotbar(PLANK);
                 other.gameObject.SetActive(false);
             }
 
-            if (other.CompareTag("BarrierZone"))
+            if (other.CompareTag("BarrierZone") && mazeActive)
             {
                 audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
                 IsolateNarrativePiece(ref NarrativePieces, 3);
@@ -147,12 +154,16 @@ public class ZoneThreeController : MonoBehaviour
                 if (hotbarController.HotbarText[slotIdx].text == POLTERDUST)
                 {
                     Key.SetActive(true);
-                    ghostSource.PlayOneShot(ghostDeath);
+                    mazeActive = false;
 
                     audioController.PlayGlobalSound((int)GlobalAudio.Polterdust);
                     audioController.PlayGlobalSound((int)GlobalAudio.GhostDeath);
                     LowerGhost.SetActive(false);
                     ghostDefeated = true;
+                    foreach (GameObject plank in Planks)
+                    {
+                        plank.SetActive(false);
+                    }
 
                     PlaneFinder.SetActive(false);
                     Void.SetActive(false);
@@ -165,6 +176,8 @@ public class ZoneThreeController : MonoBehaviour
 
             if (other.gameObject.Equals(Key))
             {
+                keyObtained = true;
+                Key.SetActive(false);
                 hotbarController.AddToHotbar(RUSTY_KEY);
 
                 audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
@@ -180,6 +193,10 @@ public class ZoneThreeController : MonoBehaviour
             foreach (GameObject obj in Environment)
             {
                 obj.SetActive(false);
+            }
+            foreach (GameObject plank in PlankObjs)
+            {
+                plank.SetActive(false);
             }
         }
 

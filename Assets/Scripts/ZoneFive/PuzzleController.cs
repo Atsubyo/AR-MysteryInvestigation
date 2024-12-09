@@ -8,10 +8,11 @@ public class PuzzleController : MonoBehaviour
     public bool completed;
     [SerializeField] GameObject puzzle;
     CompletionController progress;
+    [SerializeField] Transform camTrans;
     [SerializeField] ZoneFiveController points;
     [SerializeField] Material correctMaterial;
     [SerializeField] Material incorrectMaterial;
-    public bool placementMode = false;
+    public bool placementMode = true;
     private bool puzzleMode = false;
     private bool puzzleCheck = false;
     private float scaleAmount;
@@ -20,7 +21,7 @@ public class PuzzleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //placementMode = true;
     }
 
     // Update is called once per frame
@@ -42,14 +43,15 @@ public class PuzzleController : MonoBehaviour
 
                 case (TouchPhase.Moved):
                     scaleAmount *= 1.01f;
+                    placedPuzzle.transform.localScale = new Vector3(scaleAmount, 0.00625f * scaleAmount, scaleAmount);
                     break;
 
                 case (TouchPhase.Stationary):
                     scaleAmount *= 1.01f;
+                    placedPuzzle.transform.localScale = new Vector3(scaleAmount, 0.00625f * scaleAmount, scaleAmount);
                     break;
 
                 case (TouchPhase.Ended):
-                    placedPuzzle.transform.localScale = new Vector3(scaleAmount,0.00625f * scaleAmount,scaleAmount);
                     progress = placedPuzzle.GetComponent<CompletionController>();
                     placementMode = false;
                     puzzleMode = true;
@@ -58,20 +60,34 @@ public class PuzzleController : MonoBehaviour
         }
         if(puzzleMode)
         {
-            if(Input.touchCount>0)
+            if(Input.touchCount > 0)
             {
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if(Physics.Raycast(ray, out hit))
+                Touch currTouch = Input.GetTouch(0);
+
+                switch (currTouch.phase)
                 {
-                    var rigid = hit.collider.GetComponent<Rigidbody>();
-                    if(rigid != null)
+                    case (TouchPhase.Began):
+                        puzzleCheck = true;
+                        break;
+
+                    case (TouchPhase.Ended):
+                        progress.resetProgress();
+                        puzzleCheck = false;
+                        break;
+                }
+                if (puzzleCheck)
+                {
+                    LayerMask puzzle = LayerMask.GetMask("Puzzle");
+                    Debug.Log("Mouse pressed");
+                    var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit, 20.0f, puzzle))
                     {
-                        if (!puzzleCheck)
+                        Debug.Log(hit.collider.gameObject.name);
+                        var rigid = hit.collider.GetComponent<Rigidbody>();
+                        if (rigid != null)
                         {
-                            puzzleCheck = true;
                             checkPuzzle(rigid);
-                            puzzleCheck = false;
                         }
                     }
                 }
@@ -83,13 +99,17 @@ public class PuzzleController : MonoBehaviour
     {
         if (rigid.GetComponent<MeshRenderer>().sharedMaterial == incorrectMaterial)
         {
+            Debug.Log("1");
             if (progress != null && progress.getCurrentCheck() != null)
             {
+                Debug.Log("2");
                 if (progress.getCurrentCheck().GetComponent<Rigidbody>() == rigid)
                 {
+                    Debug.Log("3");
                     rigid.GetComponent<MeshRenderer>().material = correctMaterial;
                     progress.currentcheck += 1;
-                    if(progress.currentcheck == 5)
+                    Debug.Log("4");
+                    if (progress.currentcheck == 5)
                     {
                         completed = true;
                         points.puzzleSolved = true;
@@ -97,6 +117,7 @@ public class PuzzleController : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("5");
                     progress.resetProgress();
                 }
             }

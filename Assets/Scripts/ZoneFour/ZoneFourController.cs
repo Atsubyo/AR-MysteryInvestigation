@@ -13,7 +13,7 @@ public class ZoneFourController : MonoBehaviour
 
     public bool inZone = false;
     private int currentChest = 0;
-    private bool ghostWeakened = false;
+    public bool ghostWeakened = false;
 
     [SerializeField] private List<GameObject> NarrativePieces;
     [SerializeField] private GameObject Chest1;

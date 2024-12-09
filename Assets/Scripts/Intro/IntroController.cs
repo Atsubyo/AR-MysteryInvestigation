@@ -8,7 +8,8 @@ using static AudioController;
 
 public class IntroController : MonoBehaviour
 {
-    private bool isDoorClosed = false;
+    public bool isDoorClosed = false;
+    public bool polterdustObtained = false;
 
     [SerializeField] private Collider IntroTwoZone;
     [SerializeField] private List<GameObject> NarrativePieces;
@@ -35,7 +36,7 @@ public class IntroController : MonoBehaviour
         {
             // Disable the tapped object
             Polterdust.SetActive(false);
-
+            polterdustObtained = true;
             audioController.PlayGlobalSound((int)GlobalAudio.CluePopup);
             IsolateNarrativePiece(ref NarrativePieces, 2);
 

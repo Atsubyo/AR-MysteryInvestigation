@@ -14,6 +14,7 @@ public class ZoneFiveController : MonoBehaviour
     public bool puzzleSolving = false;
     public bool puzzleSolved = false;
     public bool inZone = false;
+    public bool mazeFinished = false;
 
     private Vector3 OriginalSkullPosition;
     private HitTestResult previousHit;
@@ -54,7 +55,6 @@ public class ZoneFiveController : MonoBehaviour
         Maze2.SetActive(false);
         Maze3.SetActive(false);
         initialCamFOV = cam.fieldOfView;
-        Debug.Log(initialCamFOV);
     }
 
     // Update is called once per frame
@@ -128,6 +128,7 @@ public class ZoneFiveController : MonoBehaviour
 
             if (other.Equals(Finish) && mazeActive)
             {
+                mazeFinished = true;
                 audioController.PlayGlobalSound((int)GlobalAudio.GhostDialogue);
                 LowerGhost.SetActive(true);
 
